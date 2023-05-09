@@ -28,8 +28,10 @@ def calculate_energy(assignments, R, T, C, D):
 def simulated_annealing(m, n, p, R, T, C, D):
     # khởi tạo thời khóa biểu ngẫu nhiên
     current_assignments = generate_initial_assignments(m, n, p)
-    print(current_assignments)
-
+    # print("----------")
+    # for i in range(m*n):
+    #     print(current_assignments[i])
+    # print("----------")
     current_energy = calculate_energy(current_assignments, R, T, C, D)
     best_assignments = current_assignments
     best_energy = current_energy
@@ -71,39 +73,58 @@ def simulated_annealing(m, n, p, R, T, C, D):
 def main():
     # Define the input matrices
     m = 3 # m: lớp học c1,c2,c3,...cm
-    n = 4  # n : giáo viên t1,t2,..,tn
-    p = 5 # p: số tiết học trong mỗi tuần 1,2,...,p
+    n = 3  # n : giáo viên t1,t2,..,tn
+    p = 4 # p: số tiết học trong mỗi tuần 1,2,...,p
 
-     #. Ma trận R kích thước m x n thể hiện phân công giáo viên
-    #  sao cho phần tử rij  là số tiết mà giáo viên tj  phải dạy cho lớp ci trong một tuần
-    R =   [[random.randint(1, 10) for j in range(n)] for i in range(m)]
-    # [[1, 1, 8], 
-    #      [1, 5, 2], 
-    #      [10, 7, 10],
-    #     [8, 10, 10], 
-    #     [3, 7, 7]]
+# start
+#      #. Ma trận R kích thước m x n thể hiện phân công giáo viên
+#     #  sao cho phần tử rij  là số tiết mà giáo viên tj  phải dạy cho lớp ci trong một tuần
+#     R =  [[1, 1, 8], 
+#          [1, 5, 2], 
+#          [10, 7, 10],
+#         [8, 10, 10], 
+#         [3, 7, 7]]
+#     #[[random.randint(1, p) for j in range(n)] for i in range(m)]
+   
     
 
-    # Hai ma trậnTnxp và Cmxp thể hiện các tiết 
-    # mà giáo viên và lớp có thể dạy hoặc học.
-    T = [[random.randint(0, 1) for j in range(p)] for i in range(n)] # [[1, 0, 1, 1, 1, 1, 1, 0, 1, 1], [1, 0, 0, 1, 1, 1, 1, 0, 1, 1], [1, 0, 0, 0, 0, 0, 1, 0, 1, 1]] 
-    C =[[random.randint(0, 1) for j in range(p)] for i in range(m)]# [[1, 0, 0, 1, 1, 1, 0, 0, 0, 1], [0, 0, 1, 1, 0, 1, 1, 1, 0, 1], [1, 0, 0, 0, 0, 1, 1, 1, 1, 1], [1, 0, 0, 0, 0, 0, 1, 1, 0, 0], [0, 0, 1, 0, 1, 1, 0, 0, 1, 0]]
-   
+#     # Hai ma trậnTnxp và Cmxp thể hiện các tiết 
+#     # mà giáo viên và lớp có thể dạy hoặc học.
+#     T = [[1, 0, 1, 1, 1, 1, 1, 0, 1, 1],
+#          [1, 0, 0, 1, 1, 1, 1, 0, 1, 1],
+#             [1, 0, 0, 0, 0, 0, 1, 0, 1, 1]]  
+#     #[[random.randint(0, 1) for j in range(p)] for i in range(n)] # 
+#     C = [[1, 0, 0, 1, 1, 1, 0, 0, 0, 1],
+#           [0, 0, 1, 1, 0, 1, 1, 1, 0, 1], 
+#           [1, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+#             [1, 0, 0, 0, 0, 0, 1, 1, 0, 0], 
+#             [0, 0, 1, 0, 1, 1, 0, 0, 1, 0]]
+# #    [[random.randint(0, 1) for j in range(p)] for i in range(m)]
 
-    # Dm x p là ma trận ràng buộc sao cho tjk =1 nếu lớp i bắt buộc
-    # phải học vào tiết k và tjk = 0 nếu không bắt buộc. 
-    D = [[random.randint(0, 1) for j in range(p)] for i in range(m)]#[[1, 1, 1, 0, 1, 0, 1, 1, 1, 0], [1, 0, 0, 1, 1, 0, 0, 0, 0, 0], [0, 1, 1, 1, 1, 0, 1, 0, 0, 1], [0, 0, 1, 0, 0, 1, 0, 1, 0, 1], [1, 1, 0, 1, 0, 1, 1, 0, 1, 1]]
-    print(D)
-    print('na,')
-    # Chạy thuật toán simulated annealing để tìm ra thời khóa biểu tối ưu
+#     # Dm x p là ma trận ràng buộc sao cho tjk =1 nếu lớp i bắt buộc
+#     # phải học vào tiết k và tjk = 0 nếu không bắt buộc. 
+#     D = [[1, 1, 1, 0, 1, 0, 1, 1, 1, 0],
+#           [1, 0, 0, 1, 1, 0, 0, 0, 0, 0], 
+#           [0, 1, 1, 1, 1, 0, 1, 0, 0, 1],
+#             [0, 0, 1, 0, 0, 1, 0, 1, 0, 1],
+#               [1, 1, 0, 1, 0, 1, 1, 0, 1, 1]]
+# #  [[random.randint(0, 1) for j in range(p)] for i in range(m)]
+#     # Chạy thuật toán simulated annealing để tìm ra thời khóa biểu tối ưu
+
+
+    #end
+    R=[[random.randint(1, p) for j in range(n)] for i in range(m)]
+    T= [[random.randint(0, 1) for j in range(p)] for i in range(n)] # 
+    C= [[random.randint(0, 1) for j in range(p)] for i in range(m)]
+    D=[[random.randint(0, 1) for j in range(p)] for i in range(m)]
     best_R = simulated_annealing(m, n, p,R, T, C, D)
 
     # In ra kết quả
     print("Thời khóa biểu tối ưu :")
-    print(best_R)
-    print("Thời khóa biểu tối ưu :")
-    for i in range(m*n):
+    for i in range(m):
         print(best_R[i])
+   
+  
 
 # Call the main function
 if __name__ == '__main__':
